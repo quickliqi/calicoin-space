@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CaliCoin Litepaper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    :root {
+      --purple:#1a0b2e;
+      --black:#000000;
+      --neon-yellow:#F7FF00;
+      --neon-pink:#FF00F7;
+      --neon-green:#00FF85;
+      --off-white:rgba(255,255,255,0.9);
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:#050009;
+      color:#ffffff;
+      scroll-behavior:smooth;
+    }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+    .site-nav {
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(5,0,12,0.9);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    .site-nav .nav-inner {
+      max-width:1200px;
+      margin:0 auto;
+      padding:1rem 1.5rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-family:'Poppins',sans-serif;
+    }
+    .nav-brand {
+      font-weight:800;
+      letter-spacing:1px;
+      font-size:1.2rem;
+    }
+    .nav-links {
+      display:flex;
+      gap:1rem;
+      font-size:0.9rem;
+    }
+    .nav-links a { opacity:0.8; transition:opacity 0.3s ease; }
+    .nav-links a:hover { opacity:1; color:var(--neon-yellow); }
+    main { overflow:hidden; }
+    .hero {
+      position:relative;
+      min-height:100vh;
+      padding:120px 5vw 60px;
+      background:radial-gradient(circle at top left, rgba(255,0,247,0.25), transparent 45%), linear-gradient(160deg, var(--purple), #05000c 70%);
+      overflow:hidden;
+    }
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 80% 20%, rgba(255,0,247,0.35), transparent 50%);
+      opacity:0.7;
+      pointer-events:none;
+    }
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"%3E%3Crect width="1" height="1" fill="white" opacity="0.08"/%3E%3C/svg%3E');
+      mix-blend-mode:screen;
+      opacity:0.25;
+      pointer-events:none;
+    }
+    .hero__inner {
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:3rem;
+      align-items:center;
+    }
+    .hero__visual {
+      position:relative;
+      min-height:420px;
+    }
+    .hero__visual .neon-circle {
+      position:absolute;
+      width:360px;
+      height:360px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,0,247,0.6), transparent 70%);
+      top:-60px;
+      right:-20px;
+      animation:rotateGlow 30s linear infinite;
+      opacity:0.6;
+      filter:blur(0px);
+    }
+    .fake-asset {
+      width:100%;
+      max-width:420px;
+      aspect-ratio:1/1.1;
+      border-radius:40px;
+      background:linear-gradient(135deg, rgba(247,255,0,0.25), rgba(255,0,247,0.25));
+      border:2px dashed rgba(255,255,255,0.3);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:'Poppins',sans-serif;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:rgba(255,255,255,0.6);
+      box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    }
+    .fake-asset::after {
+      content:attr(data-label);
+      text-align:center;
+      line-height:1.4;
+      font-size:1rem;
+      padding:0 1rem;
+    }
+    .floating { animation:floaty 4s ease-in-out infinite; }
+    .hero__content h1 {
+      font-family:'Poppins',sans-serif;
+      font-weight:900;
+      font-size:clamp(2.8rem,6vw,5.5rem);
+      margin:0 0 1rem;
+      color:var(--neon-yellow);
+      text-shadow:0 0 30px var(--neon-yellow), 0 0 60px var(--neon-pink);
+      letter-spacing:-2px;
+    }
+    .hero__content p {
+      font-size:1.1rem;
+      line-height:1.6;
+      color:var(--off-white);
+    }
+    .hero__content p span {
+      display:block;
+      font-size:0.95rem;
+      margin-top:0.5rem;
+      opacity:0.9;
+    }
+    .btn-primary {
+      margin-top:2rem;
+      background:var(--neon-green);
+      color:#050009;
+      border:none;
+      font-family:'Poppins',sans-serif;
+      font-weight:800;
+      font-size:1rem;
+      padding:1rem 2.5rem;
+      border-radius:999px;
+      cursor:pointer;
+      box-shadow:0 0 30px rgba(0,255,133,0.6);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn-primary:hover { transform:scale(1.05); box-shadow:0 0 50px rgba(255,0,247,0.7); }
+    .pulse { animation:pulse 2s ease-in-out infinite; }
+    details.asset-board {
+      margin-top:3rem;
+      background:rgba(0,0,0,0.55);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:20px;
+      padding:1.5rem;
+    }
+    details.asset-board summary {
+      font-family:'Poppins',sans-serif;
+      font-weight:700;
+      font-size:1.1rem;
+      cursor:pointer;
+      color:var(--neon-yellow);
+    }
+    .asset-grid {
+      margin-top:1.5rem;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:1rem;
+    }
+    .asset-card {
+      background:rgba(10,10,20,0.8);
+      border:1px solid rgba(247,255,0,0.3);
+      border-radius:16px;
+      padding:1rem;
+      font-size:0.85rem;
+      line-height:1.5;
+    }
+    .asset-card h4 {
+      margin:0 0 0.5rem;
+      font-family:'Poppins',sans-serif;
+      font-size:0.95rem;
+      color:var(--neon-green);
+    }
+    .section {
+      padding:100px 6vw;
+      position:relative;
+    }
+    .section h2, .section h3 { font-family:'Poppins',sans-serif; margin-top:0; }
+    .abstract-section {
+      text-align:center;
+      background:var(--purple);
+      overflow:hidden;
+    }
+    .abstract-section .paw {
+      position:absolute;
+      width:120px;
+      height:120px;
+      background:radial-gradient(circle, rgba(247,255,0,0.8), transparent 60%);
+      opacity:0.35;
+      filter:blur(1px);
+    }
+    .abstract-section .paw.pink { background:radial-gradient(circle, rgba(255,0,247,0.8), transparent 60%); bottom:10%; right:6%; }
+    .abstract-section .paw.yellow { top:12%; left:8%; }
+    .abstract-section p { max-width:800px; margin:0 auto; line-height:1.8; color:rgba(255,255,255,0.92); }
+    .legend-section {
+      background:#000;
+    }
+    .legend-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:3rem;
+      align-items:center;
+    }
+    .sticker {
+      display:inline-block;
+      background:var(--neon-yellow);
+      color:#000;
+      font-family:'Poppins',sans-serif;
+      font-weight:800;
+      padding:0.4rem 1.5rem;
+      border-radius:999px;
+      transform:rotate(-3deg);
+      margin-bottom:1rem;
+    }
+    .legend-story h3 {
+      font-size:2rem;
+      color:var(--neon-yellow);
+      margin:0 0 1.2rem;
+    }
+    .legend-story p { line-height:1.8; color:rgba(255,255,255,0.85); }
+    .legend-visual { position:relative; }
+    .legend-visual .banner {
+      position:absolute;
+      bottom:-30px;
+      left:-20px;
+      width:120px;
+      height:120px;
+      background:radial-gradient(circle, rgba(255,255,0,0.5), transparent 70%);
+      filter:blur(1px);
+      opacity:0.5;
+    }
+    .tokenomics-section {
+      background:var(--purple);
+      position:relative;
+    }
+    .tokenomics-section::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"%3E%3Ccircle cx="1" cy="1" r="1" fill="white" opacity="0.05"/%3E%3C/svg%3E');
+      opacity:0.3;
+      pointer-events:none;
+    }
+    .tokenomics-section .content {
+      position:relative;
+      z-index:2;
+    }
+    .tokenomics-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:1.5rem;
+    }
+    .stat-card {
+      background:rgba(0,0,0,0.75);
+      border:2px solid var(--neon-pink);
+      border-radius:20px;
+      padding:2rem 1.5rem;
+      text-align:center;
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .stat-card:hover { transform:translateY(-10px) scale(1.02); box-shadow:0 20px 40px rgba(0,0,0,0.5); }
+    .icon-tag {
+      display:inline-block;
+      margin-bottom:1rem;
+      padding:0.4rem 1rem;
+      border-radius:999px;
+      background:rgba(255,255,255,0.08);
+      font-size:0.85rem;
+      letter-spacing:0.5px;
+    }
+    .stat-card h4 { font-family:'Poppins',sans-serif; color:var(--neon-yellow); margin:0 0 0.5rem; }
+    .pillars-section { background:#000; }
+    .pillars-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:1.5rem;
+    }
+    .pillar-card {
+      background:rgba(26,11,46,0.8);
+      border:2px solid var(--neon-green);
+      border-radius:24px;
+      padding:2rem 1.5rem;
+      text-align:center;
+      transition:border-color 0.3s ease;
+    }
+    .pillar-card:hover { border-color:#6bffc7; }
+    .pillar-card h4 { color:var(--neon-yellow); font-family:'Poppins',sans-serif; }
+    .gamefi-section {
+      background:linear-gradient(135deg,#1a0b2e,#000);
+    }
+    .gamefi-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:3rem;
+      align-items:center;
+    }
+    .cta-secondary {
+      background:var(--neon-yellow);
+      color:#000;
+      border-radius:50px;
+      padding:0.9rem 2.5rem;
+      font-family:'Poppins',sans-serif;
+      font-weight:700;
+      display:inline-block;
+      margin-top:1.5rem;
+      box-shadow:0 10px 30px rgba(247,255,0,0.5);
+      transition:transform 0.3s ease;
+    }
+    .cta-secondary:hover { transform:translateY(-3px); }
+    .charity-section { background:#000; text-align:center; position:relative; overflow:hidden; }
+    .charity-section .big-paw {
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle, rgba(255,0,247,0.3), transparent 60%);
+      opacity:0.4;
+      animation:pulseGlow 4s ease-in-out infinite;
+    }
+    .charity-section .content { position:relative; z-index:2; }
+    .charity-section .content p { max-width:700px; margin:1.5rem auto; line-height:1.8; }
+    .charity-section .cta-secondary { background:var(--neon-pink); color:#fff; }
+    .nft-section { background:var(--purple); }
+    .nft-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:1.5rem;
+    }
+    .nft-card {
+      background:#000;
+      border:3px solid var(--neon-green);
+      border-radius:16px;
+      padding:1.5rem;
+      text-align:center;
+      box-shadow:0 20px 40px rgba(0,0,0,0.5);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nft-card:hover { transform:translateY(-8px); box-shadow:0 30px 60px rgba(0,0,0,0.6); }
+    .nft-image {
+      width:100%;
+      aspect-ratio:1/1;
+      border-radius:12px;
+      background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.8));
+      border:1px solid rgba(255,255,255,0.1);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:'Poppins',sans-serif;
+      font-weight:700;
+      letter-spacing:1px;
+      margin-bottom:1rem;
+    }
+    .rarity {
+      display:inline-block;
+      padding:0.2rem 0.8rem;
+      border-radius:999px;
+      background:rgba(255,0,247,0.2);
+      color:var(--neon-pink);
+      font-size:0.75rem;
+    }
+    .roadmap-section { background:#000; }
+    .roadmap-visual {
+      position:relative;
+      margin-top:3rem;
+      min-height:420px;
+    }
+    .road-path {
+      position:absolute;
+      inset:0;
+      margin:0 10%;
+      border-radius:240px;
+      background:radial-gradient(circle at 30% 30%, rgba(255,0,247,0.2), transparent 40%),
+                  linear-gradient(120deg, rgba(255,0,247,0.8), rgba(247,255,0,0.8));
+      mask:radial-gradient(circle at 30% 30%, transparent 20%, black 21%);
+      opacity:0.35;
+      filter:blur(8px);
+    }
+    .milestone {
+      position:absolute;
+      max-width:220px;
+      background:rgba(0,0,0,0.7);
+      border:1px solid rgba(247,255,0,0.5);
+      border-radius:12px;
+      padding:0.8rem 1rem;
+      font-size:0.9rem;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+    .milestone h4 {
+      margin:0 0 0.4rem;
+      font-family:'Poppins',sans-serif;
+      color:var(--neon-yellow);
+      font-size:1rem;
+    }
+    .community-section {
+      background:linear-gradient(90deg,var(--neon-pink),var(--neon-yellow));
+      color:#000;
+    }
+    .community-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:3rem;
+      align-items:center;
+    }
+    .community-visual {
+      background:rgba(255,255,255,0.2);
+      border-radius:40px;
+      padding:2rem;
+      text-align:center;
+      font-family:'Poppins',sans-serif;
+      font-weight:800;
+      font-size:1.2rem;
+    }
+    .community-text h3 {
+      font-family:'Poppins',sans-serif;
+      font-weight:900;
+      font-size:clamp(2.2rem,5vw,3.6rem);
+      margin:0 0 1rem;
+      text-shadow:0 0 20px rgba(255,255,255,0.6);
+    }
+    .community-text p { color:rgba(0,0,0,0.8); font-size:1rem; line-height:1.6; }
+    .cta-buttons {
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+      margin:2rem 0;
+    }
+    .cta-buttons button {
+      flex:1;
+      min-width:180px;
+      border:none;
+      border-radius:50px;
+      padding:1rem 2rem;
+      font-family:'Poppins',sans-serif;
+      font-size:1rem;
+      font-weight:700;
+      background:#000;
+      color:var(--neon-yellow);
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+      cursor:pointer;
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cta-buttons button:nth-child(2) { color:var(--neon-green); }
+    .cta-buttons button:hover { transform:scale(1.05); box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+    .social-row {
+      display:flex;
+      gap:0.8rem;
+      flex-wrap:wrap;
+    }
+    .social-row a {
+      background:#000;
+      color:#fff;
+      padding:0.6rem 1rem;
+      border-radius:999px;
+      font-size:0.9rem;
+      transition:background 0.3s ease, transform 0.3s ease;
+    }
+    .social-row a:hover { background:rgba(0,0,0,0.8); transform:translateY(-2px); }
+    .resources-grid {
+      margin-top:3rem;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.5rem;
+    }
+    .resource-card {
+      background:rgba(255,255,255,0.85);
+      color:#050009;
+      border-radius:24px;
+      padding:1.5rem;
+      box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    }
+    .resource-card h4 { margin-top:0; font-family:'Poppins',sans-serif; }
+    .resource-card details {
+      background:rgba(0,0,0,0.05);
+      border-radius:16px;
+      padding:0.8rem 1rem;
+      margin-top:0.8rem;
+    }
+    .resource-card details summary { cursor:pointer; font-weight:600; }
+    .resource-card ol { margin:0.5rem 0 0 1rem; padding:0; }
+    .resource-card li { margin-bottom:0.4rem; }
+    .final-checklist ul {
+      padding-left:1rem;
+      margin:0;
+      list-style:disc;
+    }
+    .disclaimer-section {
+      background:#000;
+      text-align:center;
+    }
+    .disclaimer-section p {
+      max-width:800px;
+      margin:0 auto;
+      color:rgba(255,255,255,0.6);
+      line-height:1.8;
+    }
+    footer {
+      background:var(--purple);
+      text-align:center;
+      padding:60px 6vw 40px;
+    }
+    .footer-logo {
+      width:110px;
+      height:110px;
+      border-radius:50%;
+      margin:0 auto 1rem;
+      background:radial-gradient(circle, rgba(255,0,247,0.4), transparent 70%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:'Poppins',sans-serif;
+      font-weight:800;
+      animation:floaty 4s ease-in-out infinite;
+    }
+    .footer-nav {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:1.5rem;
+      margin:1rem 0 1.5rem;
+      font-size:0.95rem;
+    }
+    .footer-nav a { opacity:0.8; position:relative; }
+    .footer-nav a::after {
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-4px;
+      width:100%;
+      height:2px;
+      background:var(--neon-yellow);
+      transform:scaleX(0);
+      transition:transform 0.3s ease;
+    }
+    .footer-nav a:hover { color:var(--neon-yellow); opacity:1; }
+    .footer-nav a:hover::after { transform:scaleX(1); }
+    .footer-social {
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      margin-bottom:1rem;
+    }
+    .footer-social a {
+      padding:0.4rem 0.9rem;
+      border-radius:999px;
+      background:rgba(0,0,0,0.2);
+      transition:transform 0.3s ease;
+    }
+    .footer-social a:hover { transform:translateY(-3px) scale(1.05); }
+    .reveal { opacity:0; transform:translateY(40px); transition:opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.in-view { opacity:1; transform:translateY(0); }
+    @media (max-width:900px) {
+      .hero { padding:100px 1.5rem 60px; }
+      .cta-buttons { flex-direction:column; }
+      .cta-buttons button { width:100%; }
+      .asset-grid { grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); }
+    }
+    @keyframes floaty { 0% { transform:translateY(0); } 50% { transform:translateY(-15px); } 100% { transform:translateY(0); } }
+    @keyframes pulse { 0% { transform:scale(1); box-shadow:0 0 30px rgba(0,255,133,0.6); } 50% { transform:scale(1.05); box-shadow:0 0 50px rgba(255,0,247,0.7); } 100% { transform:scale(1); box-shadow:0 0 30px rgba(0,255,133,0.6); } }
+    @keyframes rotateGlow { 0% { transform:rotate(0deg); } 100% { transform:rotate(360deg); } }
+    @keyframes pulseGlow { 0% { opacity:0.4; } 50% { opacity:0.6; } 100% { opacity:0.4; } }
+  </style>
+</head>
+<body>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <div class="nav-brand">CaliCoin</div>
+      <nav class="nav-links">
+        <a href="#hero">Hero</a>
+        <a href="#abstract">Abstract</a>
+        <a href="#legend">Legend</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#pillars">Pillars</a>
+        <a href="#gamefi">GameFi</a>
+        <a href="#charity">Charity</a>
+        <a href="#nft">NFT</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#community">Join</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero__inner">
+        <div class="hero__visual reveal">
+          <div class="neon-circle"></div>
+          <div class="fake-asset floating" data-label="cali-mascot-hero.png"></div>
+        </div>
+        <div class="hero__content reveal" data-delay="0.2">
+          <p style="text-transform:uppercase; letter-spacing:3px; color:rgba(255,255,255,0.7); font-family:'Poppins',sans-serif;">CALICOIN LITEPAPER</p>
+          <h1>CALICOIN LITEPAPER</h1>
+          <p>The paw-some meme coin riding a mini-bike straight to the moon 🌙<span>$CALI | Built by dogs, for degenerates</span></p>
+          <button class="btn-primary pulse">ENTER THE KENNEL (BUY $CALI)</button>
+        </div>
+      </div>
+      <details class="asset-board reveal" open>
+        <summary>📦 Asset Production Board (20 PNGs Ready for Upload)</summary>
+        <div class="asset-grid">
+          <article class="asset-card">
+            <h4>cali-mascot-hero.png</h4>
+            <p><strong>Description:</strong> Full-body chihuahua in oversized sombrero with sparkle aura.</p>
+            <p><strong>Dimensions:</strong> 1200×1200px, transparent.</p>
+            <p><strong>Style:</strong> Cartoon, bold outlines, neon glow.</p>
+          </article>
+          <article class="asset-card">
+            <h4>cali-minibike.png</h4>
+            <p><strong>Description:</strong> Cali ripping a pink mini-bike with bananas flying behind.</p>
+            <p><strong>Dimensions:</strong> 1400×900px, transparent.</p>
+            <p><strong>Style:</strong> Dynamic, vibrant, action-packed.</p>
+          </article>
+          <article class="asset-card">
+            <h4>cali-sombrero-wink.png</h4>
+            <p><strong>Description:</strong> Winking Cali bust with hang loose paw.</p>
+            <p><strong>Dimensions:</strong> 600×600px, transparent.</p>
+            <p><strong>Style:</strong> Playful, meme ready.</p>
+          </article>
+          <article class="asset-card">
+            <h4>banana-scatter-01.png</h4>
+            <p><strong>Description:</strong> Cluster of neon bananas with drop shadows.</p>
+            <p><strong>Dimensions:</strong> 800×600px, transparent.</p>
+            <p><strong>Style:</strong> Decorative scatter.</p>
+          </article>
+          <article class="asset-card">
+            <h4>banana-scatter-02.png</h4>
+            <p><strong>Description:</strong> Second banana cluster with varied rotations.</p>
+            <p><strong>Dimensions:</strong> 800×600px, transparent.</p>
+            <p><strong>Style:</strong> Decorative scatter.</p>
+          </article>
+          <article class="asset-card">
+            <h4>banana-single-icon.png</h4>
+            <p><strong>Description:</strong> Single neon banana with pink outline.</p>
+            <p><strong>Dimensions:</strong> 200×200px, transparent.</p>
+            <p><strong>Style:</strong> Glossy icon.</p>
+          </article>
+          <article class="asset-card">
+            <h4>roadmap-winding-road.png</h4>
+            <p><strong>Description:</strong> Neon winding road with paw milestones.</p>
+            <p><strong>Dimensions:</strong> 1600×1200px.</p>
+            <p><strong>Style:</strong> Pink/yellow on dark purple.</p>
+          </article>
+          <article class="asset-card">
+            <h4>paw-icon-neon-yellow.png</h4>
+            <p><strong>Description:</strong> Glowing paw print, yellow.</p>
+            <p><strong>Dimensions:</strong> 150×150px.</p>
+            <p><strong>Style:</strong> Bold glow.</p>
+          </article>
+          <article class="asset-card">
+            <h4>paw-icon-neon-pink.png</h4>
+            <p><strong>Description:</strong> Pink neon paw twin.</p>
+            <p><strong>Dimensions:</strong> 150×150px.</p>
+            <p><strong>Style:</strong> Bold glow.</p>
+          </article>
+          <article class="asset-card">
+            <h4>paw-icon-neon-green.png</h4>
+            <p><strong>Description:</strong> Green neon paw for accents.</p>
+            <p><strong>Dimensions:</strong> 150×150px.</p>
+            <p><strong>Style:</strong> Bold glow.</p>
+          </article>
+          <article class="asset-card">
+            <h4>section-sticker-legend.png</h4>
+            <p><strong>Description:</strong> Tilted sticker labeled “THE LEGEND”.</p>
+            <p><strong>Dimensions:</strong> 400×120px, transparent.</p>
+            <p><strong>Style:</strong> Sticker-bomb.</p>
+          </article>
+          <article class="asset-card">
+            <h4>section-sticker-tokenomics.png</h4>
+            <p><strong>Description:</strong> Sticker for TOKENOMICS header.</p>
+            <p><strong>Dimensions:</strong> 400×120px.</p>
+            <p><strong>Style:</strong> Neon yellow, black text.</p>
+          </article>
+          <article class="asset-card">
+            <h4>section-sticker-gamefi.png</h4>
+            <p><strong>Description:</strong> GAMEFI label sticker.</p>
+            <p><strong>Dimensions:</strong> 400×120px.</p>
+            <p><strong>Style:</strong> Sticker-bomb tilt.</p>
+          </article>
+          <article class="asset-card">
+            <h4>section-sticker-charity.png</h4>
+            <p><strong>Description:</strong> CHARITY sticker asset.</p>
+            <p><strong>Dimensions:</strong> 400×120px.</p>
+            <p><strong>Style:</strong> Neon playful.</p>
+          </article>
+          <article class="asset-card">
+            <h4>section-sticker-nft.png</h4>
+            <p><strong>Description:</strong> NFT WOOF CLUB sticker.</p>
+            <p><strong>Dimensions:</strong> 400×120px.</p>
+            <p><strong>Style:</strong> Sticker-bomb.</p>
+          </article>
+          <article class="asset-card">
+            <h4>cta-button-enter-kennel.png</h4>
+            <p><strong>Description:</strong> Neon green rounded CTA button.</p>
+            <p><strong>Dimensions:</strong> 600×150px, transparent.</p>
+            <p><strong>Style:</strong> Pink glow outline.</p>
+          </article>
+          <article class="asset-card">
+            <h4>bg-dark-gradient.png</h4>
+            <p><strong>Description:</strong> Deep purple to black gradient.</p>
+            <p><strong>Dimensions:</strong> 1920×1080px.</p>
+            <p><strong>Style:</strong> Smooth vertical blend.</p>
+          </article>
+          <article class="asset-card">
+            <h4>bg-grain-overlay.png</h4>
+            <p><strong>Description:</strong> Subtle white film grain overlay.</p>
+            <p><strong>Dimensions:</strong> 1920×1080px.</p>
+            <p><strong>Style:</strong> 20% opacity noise.</p>
+          </article>
+          <article class="asset-card">
+            <h4>neon-glow-circle.png</h4>
+            <p><strong>Description:</strong> Neon pink radial glow.</p>
+            <p><strong>Dimensions:</strong> 800×800px.</p>
+            <p><strong>Style:</strong> Soft gradient for overlays.</p>
+          </article>
+          <article class="asset-card">
+            <h4>hero-mockup-full.png</h4>
+            <p><strong>Description:</strong> Full hero reference mockup.</p>
+            <p><strong>Dimensions:</strong> 1920×1080px.</p>
+            <p><strong>Style:</strong> High-energy screenshot.</p>
+          </article>
+        </div>
+      </details>
+    </section>
+
+    <section id="abstract" class="section abstract-section">
+      <div class="paw yellow reveal"></div>
+      <div class="paw pink reveal" data-delay="0.2"></div>
+      <div class="reveal">
+        <h2 style="font-size:3rem; color:var(--neon-pink); font-family:'Poppins',sans-serif;">🐕 ABSTRACT</h2>
+        <p>CaliCoin ($CALI) is not your average dog coin—it's the chihuahua with the biggest attitude and the smallest bike. Born from the streets of internet culture, raised on memes, and fueled by bananas, CaliCoin is a community-driven token designed to unite degens, reward holders, and fund real-world causes.</p>
+        <p>From GameFi integration to exclusive NFT drops, charitable partnerships, and a roadmap that's more fun than a chihuahua on a mini-bike—$CALI is here to redefine what a meme coin can do.</p>
+        <p>Welcome to the kennel. 🦴</p>
+      </div>
+    </section>
+
+    <section id="legend" class="section legend-section">
+      <div class="legend-grid">
+        <div class="legend-visual reveal">
+          <div class="fake-asset floating" data-label="cali-minibike.png"></div>
+          <div class="banner"></div>
+        </div>
+        <div class="legend-story reveal" data-delay="0.2">
+          <div class="sticker">THE LEGEND</div>
+          <h3>🌮 THE LEGEND OF CALI</h3>
+          <p>Once upon a time in the back alleys of crypto Twitter, there was a tiny chihuahua with a huge sombrero and zero fear. His name? Cali.</p>
+          <p>While other dogs were chasing their tails, Cali was chasing dreams—riding his mini-bike through DEX pools, dodging rug pulls, and collecting bananas like they were going out of style.</p>
+          <p>Legend says Cali once outran a bear market on a single tank of meme fuel. Some say he's still riding, leaving trails of green candles wherever he goes.</p>
+          <p>$CALI isn't just a token. It's a lifestyle. A movement. A vibe.</p>
+          <p>Are you ready to ride with the legend? 🏍️💨</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tokenomics" class="section tokenomics-section">
+      <div class="content">
+        <div class="sticker" style="background:var(--neon-pink); color:#fff;">TOKENOMICS</div>
+        <h3 style="text-align:center; font-size:2.8rem; color:var(--neon-green);">💰 TOKENOMICS THAT MAKE SENSE<br>(Unlike most meme coins)</h3>
+        <div class="tokenomics-grid">
+          <div class="stat-card reveal">
+            <span class="icon-tag">banana-single-icon.png</span>
+            <h4>Total Supply</h4>
+            <p style="font-size:1.2rem; font-weight:700;">1,000,000,000 $CALI</p>
+            <p>No inflation. No BS.</p>
+          </div>
+          <div class="stat-card reveal" data-delay="0.2">
+            <span class="icon-tag">paw-icon-neon-green.png</span>
+            <h4>Tax Structure</h4>
+            <p style="font-size:1.1rem; font-weight:700;">0% Buy / 0% Sell</p>
+            <p>Pure degen freedom</p>
+          </div>
+          <div class="stat-card reveal" data-delay="0.4">
+            <span class="icon-tag">paw-icon-neon-pink.png</span>
+            <h4>Distribution</h4>
+            <p>50% Liquidity Pool<br>30% Community Rewards<br>15% Development<br>5% Charity Wallet</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pillars" class="section pillars-section">
+      <h3 style="text-align:center; font-size:3rem; color:var(--neon-pink);">🏛️ THE FOUR PILLARS OF THE CALIVERSE</h3>
+      <div class="pillars-grid">
+        <article class="pillar-card reveal">
+          <span class="icon-tag">paw-icon-neon-yellow.png</span>
+          <h4>COMMUNITY FIRST</h4>
+          <p>CaliCoin is built by the pack, for the pack. Governance, rewards, and vibes all flow from our holders.</p>
+        </article>
+        <article class="pillar-card reveal" data-delay="0.2">
+          <span class="icon-tag">paw-icon-neon-green.png</span>
+          <h4>GAMEFI INTEGRATION</h4>
+          <p>Play, earn, and ride. Upcoming mini-games, staking rewards, and NFT utilities make $CALI more than a holder flex.</p>
+        </article>
+        <article class="pillar-card reveal" data-delay="0.4">
+          <span class="icon-tag">paw-icon-neon-pink.png</span>
+          <h4>CHARITY &amp; IMPACT</h4>
+          <p>5% of supply funds real-world animal shelters and rescue orgs. Memes with meaning. 🐾</p>
+        </article>
+        <article class="pillar-card reveal" data-delay="0.6">
+          <span class="icon-tag">banana-single-icon.png</span>
+          <h4>MEME CULTURE</h4>
+          <p>We don't take ourselves seriously, but we take our community seriously. Cali is a vibe, not a VC pitch.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="gamefi" class="section gamefi-section">
+      <div class="gamefi-grid">
+        <div class="gamefi-text reveal">
+          <div class="sticker" style="background:var(--neon-green); color:#000;">GAMEFI</div>
+          <h3 style="color:var(--neon-green); font-size:2.6rem;">🎮 PLAY. EARN. RIDE.</h3>
+          <p>CaliCoin isn't just a hold-and-hope token. We're building an ecosystem where you can:</p>
+          <p>🏆 Stake $CALI for passive rewards<br>🎲 Play mini-games (Cali Kart Racing, Banana Dash, etc.)<br>🎁 Earn NFT loot boxes<br>🔥 Compete in community tournaments with real $CALI prizes</p>
+          <p>Our GameFi partners are building integrations that turn your $CALI into in-game power-ups, skins, and flex.</p>
+          <p>Why hold when you can PLAY?</p>
+          <a class="cta-secondary" href="#community">JOIN THE GAME WAITLIST</a>
+        </div>
+        <div class="hero__visual reveal" data-delay="0.2">
+          <div class="fake-asset floating" data-label="cali-sombrero-wink.png"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="charity" class="section charity-section">
+      <div class="big-paw"></div>
+      <div class="content reveal">
+        <div class="sticker" style="background:var(--neon-pink); color:#fff;">CHARITY</div>
+        <h3 style="font-size:3rem; color:var(--neon-pink);">🐾 MEMES WITH A MISSION</h3>
+        <p>5% of the total $CALI supply is locked in the Charity Wallet, dedicated to funding:</p>
+        <p>🏥 Animal shelters and rescue organizations<br>🐕 Pet adoption programs<br>🦴 Veterinary care for strays and abandoned animals</p>
+        <p>Every quarter, the community votes on which organizations receive support. We believe in giving back to the real good boys and girls out there.</p>
+        <p>Because even meme coins can have a heart. ❤️</p>
+        <a class="cta-secondary" href="#">SEE OUR CHARITY PARTNERS</a>
+      </div>
+    </section>
+
+    <section id="nft" class="section nft-section">
+      <div class="sticker" style="background:var(--neon-yellow); color:#000;">NFT WOOF CLUB</div>
+      <h3 style="font-size:2.8rem; color:var(--neon-yellow);">🖼️ THE WOOF CLUB: EXCLUSIVE NFT DROPS</h3>
+      <p style="max-width:780px; line-height:1.8; color:var(--off-white);">Holding $CALI gets you more than price action—it gets you access.
+        <br><br>The Woof Club is our exclusive NFT collection featuring:<br>
+        ✨ 10,000 unique Cali-themed NFTs<br>🎨 Hand-drawn rarity traits (sombreros, mini-bikes, banana accessories)<br>🎟️ Utility perks: Early access to games, staking boosts, IRL merch<br>🏆 VIP holder rewards and airdrops
+        <br><br>Mint opens Q3 2025. Holders get whitelist priority.
+      </p>
+      <a class="cta-secondary" href="#">GET ON THE WHITELIST</a>
+      <div class="nft-grid" style="margin-top:2rem;">
+        <article class="nft-card reveal">
+          <div class="nft-image">NFT #001</div>
+          <span class="rarity">RARE</span>
+          <p>Cali with gold sombrero, shades &amp; banana necklace.</p>
+        </article>
+        <article class="nft-card reveal" data-delay="0.2">
+          <div class="nft-image">NFT #777</div>
+          <span class="rarity" style="background:rgba(0,255,133,0.2); color:var(--neon-green);">EPIC</span>
+          <p>Cali on mini-bike, flame decals, laser eyes.</p>
+        </article>
+        <article class="nft-card reveal" data-delay="0.4">
+          <div class="nft-image">NFT #9999</div>
+          <span class="rarity" style="background:rgba(247,255,0,0.2); color:var(--neon-yellow);">LEGENDARY</span>
+          <p>Cali astronaut suit, moon flag flex.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section roadmap-section">
+      <h3 style="text-align:center; font-size:3.2rem; color:var(--neon-green);">🛣️ THE ROAD AHEAD</h3>
+      <div class="roadmap-visual">
+        <div class="road-path reveal"></div>
+        <div class="milestone reveal" style="top:8%; left:12%;">
+          <h4>Q2 2025</h4>
+          <p>Token Launch<br>Liquidity Lock<br>Community Building<br>Meme Warfare Initiated</p>
+        </div>
+        <div class="milestone reveal" style="top:32%; right:12%;" data-delay="0.2">
+          <h4>Q3 2025</h4>
+          <p>NFT Woof Club Mint<br>GameFi Beta Launch<br>First Charity Drop<br>CEX Listings (Target)</p>
+        </div>
+        <div class="milestone reveal" style="top:58%; left:18%;" data-delay="0.4">
+          <h4>Q4 2025</h4>
+          <p>Full GameFi Rollout<br>Staking Platform Live<br>Merch Store Launch<br>Cali Kart Racing Game</p>
+        </div>
+        <div class="milestone reveal" style="bottom:5%; right:20%;" data-delay="0.6">
+          <h4>2026 &amp; BEYOND</h4>
+          <p>Metaverse Integration<br>DAO Governance<br>Global Charity Expansion<br>Mini-Bike IRL Giveaway 🏍️</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="community" class="section community-section">
+      <div class="community-grid">
+        <div class="community-visual reveal">
+          <div class="fake-asset floating" data-label="cali-minibike.png" style="margin:0 auto; border-style:solid; border-width:4px; border-color:rgba(0,0,0,0.4);"></div>
+        </div>
+        <div class="community-text reveal" data-delay="0.2">
+          <h3>🚀 READY TO JOIN THE PACK?</h3>
+          <p>The kennel is open. The bike is revving. The bananas are ripe.</p>
+          <p>Don't get left behind while Cali rides to the moon.</p>
+          <div class="cta-buttons">
+            <button>BUY $CALI NOW</button>
+            <button>JOIN TELEGRAM</button>
+          </div>
+          <div class="social-row">
+            <a href="#">Twitter / X</a>
+            <a href="#">Telegram</a>
+            <a href="#">Discord</a>
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="resources-grid">
+        <div class="resource-card">
+          <h4>📲 ONE-CLICK UPLOAD KIT</h4>
+          <details open>
+            <summary>🟦 Wix</summary>
+            <ol>
+              <li>Upload all PNGs via Media Manager.</li>
+              <li>Add blank sections labeled Hero → NFT.</li>
+              <li>Apply bg-dark-gradient.png to hero, place cali-mascot-hero.png.</li>
+              <li>Style texts (Poppins) + button colors per spec.</li>
+              <li>Assign Float/Fade animations to visuals.</li>
+              <li>Tune Mobile view, publish.</li>
+            </ol>
+          </details>
+          <details>
+            <summary>🟪 Framer</summary>
+            <ol>
+              <li>Import /assets via Assets panel.</li>
+              <li>Create 12 full-width frames.</li>
+              <li>Use Frame+Text layers for each block.</li>
+              <li>Attach interactions (While In View float/slide).</li>
+              <li>Leverage components for cards/buttons.</li>
+              <li>Check breakpoints, publish.</li>
+            </ol>
+          </details>
+          <details>
+            <summary>🔵 Webflow</summary>
+            <ol>
+              <li>Upload PNGs to Assets panel.</li>
+              <li>Add sections & containers per block names.</li>
+              <li>Apply background images + gradients.</li>
+              <li>Build cards with Div Blocks & classes.</li>
+              <li>Use Interactions for scroll fades/floats.</li>
+              <li>Polish tablet/mobile, publish.</li>
+            </ol>
+          </details>
+          <details>
+            <summary>🟠 Canva</summary>
+            <ol>
+              <li>Start Blank Website, upload PNGs.</li>
+              <li>Insert blank sections sequentially.</li>
+              <li>Drag images/text/buttons, match fonts/colors.</li>
+              <li>Use Animate → Fade/Rise per block.</li>
+              <li>Adjust Mobile view stack order.</li>
+              <li>Publish to domain of choice.</li>
+            </ol>
+          </details>
+          <details>
+            <summary>🟣 Dorik</summary>
+            <ol>
+              <li>Create blank site, upload media.</li>
+              <li>Add sections, assign background art.</li>
+              <li>Use Image/Heading/Button blocks for layouts.</li>
+              <li>Enable scroll animations (Fade/Slide).</li>
+              <li>Review mobile preview tweaks.</li>
+              <li>Publish + connect domain.</li>
+            </ol>
+          </details>
+        </div>
+        <div class="resource-card final-checklist">
+          <h4>📋 FINAL CHECKLIST</h4>
+          <ul>
+            <li>✅ Export all 20 PNG assets listed above.</li>
+            <li>✅ Structure 12 blocks exactly as mapped.</li>
+            <li>✅ Apply neon gradients + grain overlays.</li>
+            <li>✅ Hook up scroll + hover animations.</li>
+            <li>✅ Test hero CTA + social links.</li>
+            <li>✅ Verify responsive layouts on mobile.</li>
+            <li>✅ Review platform guide steps before upload.</li>
+            <li>✅ Snapshot hero-mockup-full.png for marketing.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="disclaimer" class="section disclaimer-section">
+      <h3 style="font-size:1.5rem; color:var(--neon-yellow);">⚠️ DISCLAIMER</h3>
+      <p>CaliCoin ($CALI) is a meme token created for entertainment purposes. This is not financial advice. Cryptocurrency investments are highly volatile and risky. Only invest what you can afford to lose. $CALI holders are responsible for their own research and decisions. No guarantees of profits, moon missions, or mini-bike deliveries are implied.</p>
+      <p>Always DYOR. Be smart. Have fun. Ride safe. 🐕🏍️<br>Not affiliated with any official Chihuahua organizations (unfortunately).</p>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="footer-logo">Cali</div>
+    <nav class="footer-nav">
+      <a href="#abstract">About</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#nft">NFT</a>
+      <a href="#charity">Charity</a>
+      <a href="#community">Contact</a>
+    </nav>
+    <div class="footer-social">
+      <a href="#">Twitter</a>
+      <a href="#">Telegram</a>
+      <a href="#">Discord</a>
+      <a href="#">Medium</a>
+    </div>
+    <p style="color:rgba(255,255,255,0.6);">© 2025 CaliCoin. Built by degens, for degens. All rights reserved. 🐾</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold:0.2 });
+
+      document.querySelectorAll('.reveal').forEach(el => {
+        const delay = el.dataset.delay ? parseFloat(el.dataset.delay) : 0;
+        el.style.transitionDelay = delay + 's';
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
