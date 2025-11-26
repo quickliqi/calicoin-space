@@ -4,10 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CaliCoin Litepaper</title>
+  <meta name="description" content="CaliCoin ($CALI) — a meme coin powered by Cali, a mini-bike-riding legend. Tokenomics, roadmap, NFTs, GameFi, and charity with real bite.">
+  <meta property="og:title" content="CaliCoin Litepaper">
+  <meta property="og:description" content="The paw-some meme coin riding a mini-bike straight to the moon. Tokenomics, GameFi, and NFTs.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="cali-mascot-hero.png">
+  <meta name="theme-color" content="#FF00F7">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
   <style>
     :root {
       --purple:#1a0b2e;
@@ -18,15 +27,21 @@
       --off-white:rgba(255,255,255,0.9);
     }
     * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
     body {
       margin:0;
       font-family:'Inter',sans-serif;
       background:#050009;
       color:#ffffff;
-      scroll-behavior:smooth;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      text-rendering:optimizeLegibility;
+      line-height:1.6;
     }
     a { color:inherit; text-decoration:none; }
-    img { max-width:100%; display:block; }
+    img { max-width:100%; height:auto; display:block; object-fit:contain; }
+
+    /* NAV */
     .site-nav {
       position:sticky;
       top:0;
@@ -54,9 +69,12 @@
       gap:1rem;
       font-size:0.9rem;
     }
-    .nav-links a { opacity:0.8; transition:opacity 0.3s ease; }
+    .nav-links a { opacity:0.8; transition:opacity 0.3s ease, color 0.3s ease; }
     .nav-links a:hover { opacity:1; color:var(--neon-yellow); }
+
     main { overflow:hidden; }
+
+    /* HERO */
     .hero {
       position:relative;
       min-height:100vh;
@@ -88,6 +106,8 @@
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:3rem;
       align-items:center;
+      max-width:1200px;
+      margin:0 auto;
     }
     .hero__visual {
       position:relative;
@@ -105,6 +125,15 @@
       opacity:0.6;
       filter:blur(0px);
     }
+    .hero__visual img{
+      width:100%;
+      max-width:520px;
+      margin:0 auto;
+      border-radius:28px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    /* Placeholder .img (legacy) kept but not used; no layout impact */
     .img {
       width:100%;
       max-width:420px;
@@ -122,14 +151,10 @@
       color:rgba(255,255,255,0.6);
       box-shadow:0 20px 60px rgba(0,0,0,0.5);
     }
-    .img::after {
-      content:attr(data-label);
-      text-align:center;
-      line-height:1.4;
-      font-size:1rem;
-      padding:0 1rem;
-    }
+    .img::after { content:attr(data-label); text-align:center; line-height:1.4; font-size:1rem; padding:0 1rem; }
+
     .floating { animation:floaty 4s ease-in-out infinite; }
+
     .hero__content h1 {
       font-family:'Poppins',sans-serif;
       font-weight:900;
@@ -139,17 +164,9 @@
       text-shadow:0 0 30px var(--neon-yellow), 0 0 60px var(--neon-pink);
       letter-spacing:-2px;
     }
-    .hero__content p {
-      font-size:1.1rem;
-      line-height:1.6;
-      color:var(--off-white);
-    }
-    .hero__content p span {
-      display:block;
-      font-size:0.95rem;
-      margin-top:0.5rem;
-      opacity:0.9;
-    }
+    .hero__content p { font-size:1.1rem; line-height:1.6; color:var(--off-white); }
+    .hero__content p span { display:block; font-size:0.95rem; margin-top:0.5rem; opacity:0.9; }
+
     .btn-primary {
       margin-top:2rem;
       background:var(--neon-green);
@@ -166,35 +183,33 @@
     }
     .btn-primary:hover { transform:scale(1.05); box-shadow:0 0 50px rgba(255,0,247,0.7); }
     .pulse { animation:pulse 2s ease-in-out infinite; }
-    .section {
-      padding:100px 6vw;
-      position:relative;
-    }
+
+    /* SECTIONS */
+    .section { padding:100px 6vw; position:relative; }
     .section h2, .section h3 { font-family:'Poppins',sans-serif; margin-top:0; }
-    .abstract-section {
-      text-align:center;
-      background:var(--purple);
-      overflow:hidden;
-    }
+
+    /* ABSTRACT */
+    .abstract-section { text-align:center; background:var(--purple); overflow:hidden; }
     .abstract-section .paw {
       position:absolute;
-      width:120px;
-      height:120px;
-      background:radial-gradient(circle, rgba(247,255,0,0.8), transparent 60%);
+      width:120px; height:120px;
       opacity:0.35;
       filter:blur(1px);
     }
-    .abstract-section .img { background:radial-gradient(circle, rgba(255,0,247,0.8), transparent 60%); bottom:10%; right:6%; }
-    .abstract-section .img { top:12%; left:8%; }
+    .abstract-section .paw.yellow { top:12%; left:8%; }
+    .abstract-section .paw.pink { bottom:10%; right:6%; }
+    .abstract-section .paw img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 12px rgba(247,255,0,0.6)); }
     .abstract-section p { max-width:800px; margin:0 auto; line-height:1.8; color:rgba(255,255,255,0.92); }
-    .legend-section {
-      background:#000;
-    }
+
+    /* LEGEND */
+    .legend-section { background:#000; }
     .legend-grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:3rem;
       align-items:center;
+      max-width:1200px;
+      margin:0 auto;
     }
     .sticker {
       display:inline-block;
@@ -207,39 +222,28 @@
       transform:rotate(-3deg);
       margin-bottom:1rem;
     }
-    .legend-story h3 {
-      font-size:2rem;
-      color:var(--neon-yellow);
-      margin:0 0 1.2rem;
-    }
+    .legend-story h3 { font-size:2rem; color:var(--neon-yellow); margin:0 0 1.2rem; }
     .legend-story p { line-height:1.8; color:rgba(255,255,255,0.85); }
     .legend-visual { position:relative; }
-    .img.banner {
+    .legend-visual img { border-radius:24px; box-shadow:0 20px 50px rgba(0,0,0,0.5); }
+    .legend-visual .banner {
       position:absolute;
-      bottom:-30px;
-      left:-20px;
-      width:120px;
-      height:120px;
+      bottom:-30px; left:-20px;
+      width:120px; height:120px;
       background:radial-gradient(circle, rgba(255,255,0,0.5), transparent 70%);
-      filter:blur(1px);
-      opacity:0.5;
-    }
-    .tokenomics-section {
-      background:var(--purple);
-      position:relative;
-    }
-    .tokenomics-section::after {
-      content:"";
-      position:absolute;
-      inset:0;
-      background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"%3E%3Ccircle cx="1" cy="1" r="1" fill="white" opacity="0.05"/%3E%3C/svg%3E');
-      opacity:0.3;
+      filter:blur(1px); opacity:0.5;
       pointer-events:none;
     }
-    .tokenomics-section .content {
-      position:relative;
-      z-index:2;
+
+    /* TOKENOMICS */
+    .tokenomics-section { background:var(--purple); position:relative; }
+    .tokenomics-section::after {
+      content:"";
+      position:absolute; inset:0;
+      background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"%3E%3Ccircle cx="1" cy="1" r="1" fill="white" opacity="0.05"/%3E%3C/svg%3E');
+      opacity:0.3; pointer-events:none;
     }
+    .tokenomics-section .content { position:relative; z-index:2; max-width:1200px; margin:0 auto; }
     .tokenomics-grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -254,21 +258,21 @@
       transition:transform 0.3s ease, box-shadow 0.3s ease;
     }
     .stat-card:hover { transform:translateY(-10px) scale(1.02); box-shadow:0 20px 40px rgba(0,0,0,0.5); }
-    .img {
-      display:inline-block;
-      margin-bottom:1rem;
-      padding:0.4rem 1rem;
-      border-radius:999px;
-      background:rgba(255,255,255,0.08);
-      font-size:0.85rem;
-      letter-spacing:0.5px;
+    .stat-card img{
+      width:64px; height:64px; object-fit:contain;
+      margin:0 auto 1rem;
+      filter:drop-shadow(0 0 8px rgba(255,255,255,0.25));
     }
     .stat-card h4 { font-family:'Poppins',sans-serif; color:var(--neon-yellow); margin:0 0 0.5rem; }
+
+    /* PILLARS */
     .pillars-section { background:#000; }
     .pillars-grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
       gap:1.5rem;
+      max-width:1200px;
+      margin:0 auto;
     }
     .pillar-card {
       background:rgba(26,11,46,0.8);
@@ -276,18 +280,21 @@
       border-radius:24px;
       padding:2rem 1.5rem;
       text-align:center;
-      transition:border-color 0.3s ease;
+      transition:border-color 0.3s ease, transform 0.3s ease;
     }
-    .pillar-card:hover { border-color:#6bffc7; }
+    .pillar-card:hover { border-color:#6bffc7; transform:translateY(-4px); }
+    .pillar-card img{ width:56px; height:56px; object-fit:contain; margin:0 auto 0.8rem; }
     .pillar-card h4 { color:var(--neon-yellow); font-family:'Poppins',sans-serif; }
-    .gamefi-section {
-      background:linear-gradient(135deg,#1a0b2e,#000);
-    }
+
+    /* GAMEFI */
+    .gamefi-section { background:linear-gradient(135deg,#1a0b2e,#000); }
     .gamefi-grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:3rem;
       align-items:center;
+      max-width:1200px;
+      margin:0 auto;
     }
     .cta-secondary {
       background:var(--neon-yellow);
@@ -302,10 +309,12 @@
       transition:transform 0.3s ease;
     }
     .cta-secondary:hover { transform:translateY(-3px); }
+    .gamefi-section .hero__visual img{ max-width:520px; margin-left:auto; border-radius:24px; }
+
+    /* CHARITY */
     .charity-section { background:#000; text-align:center; position:relative; overflow:hidden; }
     .charity-section .big-paw {
-      position:absolute;
-      inset:0;
+      position:absolute; inset:0;
       background:radial-gradient(circle, rgba(255,0,247,0.3), transparent 60%);
       opacity:0.4;
       animation:pulseGlow 4s ease-in-out infinite;
@@ -313,11 +322,15 @@
     .charity-section .content { position:relative; z-index:2; }
     .charity-section .content p { max-width:700px; margin:1.5rem auto; line-height:1.8; }
     .charity-section .cta-secondary { background:var(--neon-pink); color:#fff; }
+
+    /* NFT */
     .nft-section { background:var(--purple); }
     .nft-grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
       gap:1.5rem;
+      max-width:1200px;
+      margin:2rem auto 0;
     }
     .nft-card {
       background:#000;
@@ -342,6 +355,8 @@
       font-weight:700;
       letter-spacing:1px;
       margin-bottom:1rem;
+      color:#fff;
+      text-shadow:0 2px 10px rgba(0,0,0,0.6);
     }
     .rarity {
       display:inline-block;
@@ -351,12 +366,17 @@
       color:var(--neon-pink);
       font-size:0.75rem;
     }
+
+    /* ROADMAP */
     .roadmap-section { background:#000; }
     .roadmap-visual {
       position:relative;
       margin-top:3rem;
       min-height:420px;
+      max-width:1200px;
+      margin-left:auto; margin-right:auto;
     }
+    .roadmap-visual img { width:100%; height:auto; display:block; border-radius:16px; }
     .road-path {
       position:absolute;
       inset:0;
@@ -377,6 +397,7 @@
       padding:0.8rem 1rem;
       font-size:0.9rem;
       box-shadow:0 10px 30px rgba(0,0,0,0.4);
+      backdrop-filter:blur(4px);
     }
     .milestone h4 {
       margin:0 0 0.4rem;
@@ -384,6 +405,8 @@
       color:var(--neon-yellow);
       font-size:1rem;
     }
+
+    /* COMMUNITY */
     .community-section {
       background:linear-gradient(90deg,var(--neon-pink),var(--neon-yellow));
       color:#000;
@@ -393,6 +416,8 @@
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:3rem;
       align-items:center;
+      max-width:1200px;
+      margin:0 auto;
     }
     .community-visual {
       background:rgba(255,255,255,0.2);
@@ -403,6 +428,7 @@
       font-weight:800;
       font-size:1.2rem;
     }
+    .community-visual img{ border-radius:24px; }
     .community-text h3 {
       font-family:'Poppins',sans-serif;
       font-weight:900;
@@ -434,10 +460,12 @@
     }
     .cta-buttons button:nth-child(2) { color:var(--neon-green); }
     .cta-buttons button:hover { transform:scale(1.05); box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+
     .social-row {
       display:flex;
       gap:0.8rem;
       flex-wrap:wrap;
+      align-items:center;
     }
     .social-row a {
       background:#000;
@@ -446,80 +474,82 @@
       border-radius:999px;
       font-size:0.9rem;
       transition:background 0.3s ease, transform 0.3s ease;
+      display:inline-flex; align-items:center; gap:8px;
     }
     .social-row a:hover { background:rgba(0,0,0,0.8); transform:translateY(-2px); }
-    .disclaimer-section {
-      background:#000;
-      text-align:center;
+    /* Inline icon masks by URL selector (no HTML changes) */
+    .social-row a[href*="x.com"]::before,
+    .footer-social a[href*="x.com"]::before{
+      content:"";
+      width:18px; height:18px; display:inline-block;
+      background-color:currentColor;
+      -webkit-mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><path fill="black" d="M86 10h18L70 57l36 53H90L61 70 30 110H12l38-43L12 10h30l24 34L86 10z"/></svg>') center/contain no-repeat;
+              mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><path fill="black" d="M86 10h18L70 57l36 53H90L61 70 30 110H12l38-43L12 10h30l24 34L86 10z"/></svg>') center/contain no-repeat;
     }
+    .social-row a[href*="t.me"]::before,
+    .footer-social a[href*="t.me"]::before{
+      content:"";
+      width:18px; height:18px; display:inline-block;
+      background-color:currentColor;
+      -webkit-mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M9.04 15.51 8.9 19.9c.4 0 .57-.17.78-.38l1.87-1.8 3.88 2.85c.71.39 1.22.19 1.41-.66l2.55-11.97c.24-1.12-.4-1.55-1.13-1.28L3.5 10.2c-1.08.42-1.07 1.01-.19 1.28l4.72 1.47 10.96-6.93c.52-.32 1-.15.61.2L9.04 15.51z"/></svg>') center/contain no-repeat;
+              mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M9.04 15.51 8.9 19.9c.4 0 .57-.17.78-.38l1.87-1.8 3.88 2.85c.71.39 1.22.19 1.41-.66l2.55-11.97c.24-1.12-.4-1.55-1.13-1.28L3.5 10.2c-1.08.42-1.07 1.01-.19 1.28l4.72 1.47 10.96-6.93c.52-.32 1-.15.61.2L9.04 15.51z"/></svg>') center/contain no-repeat;
+    }
+
+    /* DISCLAIMER */
+    .disclaimer-section { background:#000; text-align:center; }
     .disclaimer-section p {
-      max-width:800px;
-      margin:0 auto;
-      color:rgba(255,255,255,0.6);
-      line-height:1.8;
+      max-width:800px; margin:0 auto; color:rgba(255,255,255,0.6); line-height:1.8;
     }
-    footer {
-      background:var(--purple);
-      text-align:center;
-      padding:60px 6vw 40px;
-    }
+
+    /* FOOTER */
+    footer { background:var(--purple); text-align:center; padding:60px 6vw 40px; }
     .footer-logo {
-      width:110px;
-      height:110px;
-      border-radius:50%;
+      width:110px; height:110px; border-radius:50%;
       margin:0 auto 1rem;
       background:radial-gradient(circle, rgba(255,0,247,0.4), transparent 70%);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:'Poppins',sans-serif;
-      font-weight:800;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Poppins',sans-serif; font-weight:800;
       animation:floaty 4s ease-in-out infinite;
     }
     .footer-nav {
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:1.5rem;
-      margin:1rem 0 1.5rem;
-      font-size:0.95rem;
+      display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem; margin:1rem 0 1.5rem; font-size:0.95rem;
     }
     .footer-nav a { opacity:0.8; position:relative; }
     .footer-nav a::after {
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:-4px;
-      width:100%;
-      height:2px;
-      background:var(--neon-yellow);
-      transform:scaleX(0);
-      transition:transform 0.3s ease;
+      content:""; position:absolute; left:0; bottom:-4px; width:100%; height:2px;
+      background:var(--neon-yellow); transform:scaleX(0); transition:transform 0.3s ease;
     }
     .footer-nav a:hover { color:var(--neon-yellow); opacity:1; }
     .footer-nav a:hover::after { transform:scaleX(1); }
     .footer-social {
-      display:flex;
-      justify-content:center;
-      gap:1rem;
-      flex-wrap:wrap;
-      margin-bottom:1rem;
+      display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-bottom:1rem;
     }
     .footer-social a {
-      padding:0.4rem 0.9rem;
-      border-radius:999px;
-      background:rgba(0,0,0,0.2);
-      transition:transform 0.3s ease;
+      padding:0.4rem 0.9rem; border-radius:999px; background:rgba(0,0,0,0.2);
+      transition:transform 0.3s ease; display:inline-flex; align-items:center; gap:8px;
     }
     .footer-social a:hover { transform:translateY(-3px) scale(1.05); }
+
+    /* REVEAL */
     .reveal { opacity:0; transform:translateY(40px); transition:opacity 0.8s ease, transform 0.8s ease; }
     .reveal.in-view { opacity:1; transform:translateY(0); }
+
+    /* RESPONSIVE */
     @media (max-width:900px) {
       .hero { padding:100px 1.5rem 60px; }
       .cta-buttons { flex-direction:column; }
       .cta-buttons button { width:100%; }
       .asset-grid { grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); }
     }
+
+    /* ACCESSIBILITY & REDUCED MOTION */
+    :focus-visible { outline:3px solid var(--neon-yellow); outline-offset:3px; border-radius:8px; }
+    @media (prefers-reduced-motion: reduce){
+      .pulse, .floating, .hero__visual .neon-circle, .charity-section .big-paw { animation:none !important; }
+      * { scroll-behavior:auto; }
+    }
+
+    /* ANIMATIONS */
     @keyframes floaty { 0% { transform:translateY(0); } 50% { transform:translateY(-15px); } 100% { transform:translateY(0); } }
     @keyframes pulse { 0% { transform:scale(1); box-shadow:0 0 30px rgba(0,255,133,0.6); } 50% { transform:scale(1.05); box-shadow:0 0 50px rgba(255,0,247,0.7); } 100% { transform:scale(1); box-shadow:0 0 30px rgba(0,255,133,0.6); } }
     @keyframes rotateGlow { 0% { transform:rotate(0deg); } 100% { transform:rotate(360deg); } }
@@ -550,7 +580,7 @@
       <div class="hero__inner">
         <div class="hero__visual reveal">
           <div class="neon-circle"></div>
-         <img src="cali-mascot-hero.png" alt="Cali Mascot">
+          <img src="cali-mascot-hero.png" alt="Cali Mascot" fetchpriority="high" decoding="async">
         </div>
         <div class="hero__content reveal" data-delay="0.2">
           <p style="text-transform:uppercase; letter-spacing:3px; color:rgba(255,255,255,0.7); font-family:'Poppins',sans-serif;">CALICOIN LITEPAPER</p>
@@ -562,12 +592,12 @@
     </section>
 
     <section id="abstract" class="section abstract-section">
-      <div class="paw yellow reveal"><img src="paw-icon-neon-yellow.png" alt="Yellow Paw"></div>
-      <div class="paw pink reveal" data-delay="0.2"><img src="paw-icon-neon-pink.png" alt="Pink Paw"></div>
+      <div class="paw yellow reveal"><img src="paw-icon-neon-yellow.png" alt="Yellow Paw" loading="lazy" decoding="async"></div>
+      <div class="paw pink reveal" data-delay="0.2"><img src="paw-icon-neon-pink.png" alt="Pink Paw" loading="lazy" decoding="async"></div>
       <div class="reveal">
         <h2 style="font-size:3rem; color:var(--neon-pink); font-family:'Poppins',sans-serif;">🐕 ABSTRACT</h2>
-        <p>CaliCoin ($CALI) is not your average dog coin—it's the chihuahua with the biggest attitude and the smallest bike. Born from the streets of internet culture, raised on memes, and fueled by bananas, CaliCoin is a community-driven token designed to unite degens, reward holders, and fund real-world causes.</p>
-        <p>From GameFi integration to exclusive NFT drops, charitable partnerships, and a roadmap that's more fun than a chihuahua on a mini-bike—$CALI is here to redefine what a meme coin can do.</p>
+        <p>CaliCoin ($CALI) is not your average dog coin—it's the Chihuahua with the biggest attitude and the smallest bike. Born from the streets of internet culture, raised on memes, and fueled by bananas, CaliCoin is a community-driven token designed to unite degens, reward holders, and fund real-world causes.</p>
+        <p>From GameFi integration to exclusive NFT drops, charitable partnerships, and a roadmap that's more fun than a Chihuahua on a mini-bike—$CALI is here to redefine what a meme coin can do.</p>
         <p>Welcome to the kennel. 🦴</p>
       </div>
     </section>
@@ -575,12 +605,12 @@
     <section id="legend" class="section legend-section">
       <div class="legend-grid">
         <div class="legend-visual reveal">
-            <img src="cali-minibike.png" alt="Cali Mini Bike">
+          <img src="cali-minibike.png" alt="Cali on a mini-bike" loading="lazy" decoding="async">
           <div class="banner"></div>
         </div>
         <div class="legend-story reveal" data-delay="0.2">
           <h3>🌮 THE LEGEND OF CALI</h3>
-          <p>Once upon a time in the back alleys of crypto Twitter, there was a tiny chihuahua with a huge sombrero and zero fear. His name? Cali.</p>
+          <p>Once upon a time in the back alleys of crypto Twitter, there was a tiny Chihuahua with a huge sombrero and zero fear. His name? Cali.</p>
           <p>While other dogs were chasing their tails, Cali was chasing dreams—riding his mini-bike through DEX pools, dodging rug pulls, and collecting bananas like they were going out of style.</p>
           <p>Legend says Cali once outran a bear market on a single tank of meme fuel. Some say he's still riding, leaving trails of green candles wherever he goes.</p>
           <p>$CALI isn't just a token. It's a lifestyle. A movement. A vibe.</p>
@@ -595,19 +625,19 @@
         <h3 style="text-align:center; font-size:2.8rem; color:var(--neon-green);">💰 TOKENOMICS THAT MAKE SENSE<br>(Unlike most meme coins)</h3>
         <div class="tokenomics-grid">
           <div class="stat-card reveal">
-            <img src="paw-icon-neon-yellow.png" alt="Yellow Paw">
+            <img src="paw-icon-neon-yellow.png" alt="Yellow Paw" loading="lazy" decoding="async">
             <h4>Total Supply</h4>
             <p style="font-size:1.2rem; font-weight:700;">1,000,000,000 $CALI</p>
             <p>No inflation. No BS.</p>
           </div>
           <div class="stat-card reveal" data-delay="0.2">
-             <img src="paw-icon-neon-green.png" alt="Green Paw">
+            <img src="paw-icon-neon-green.png" alt="Green Paw" loading="lazy" decoding="async">
             <h4>Tax Structure</h4>
             <p style="font-size:1.1rem; font-weight:700;">0% Buy / 0% Sell</p>
-            <p>Pure degen freedom</p>
+            <p>Pure degen freedom.</p>
           </div>
           <div class="stat-card reveal" data-delay="0.4">
-            <img src="paw-icon-neon-pink.png" alt="Pink Paw">
+            <img src="paw-icon-neon-pink.png" alt="Pink Paw" loading="lazy" decoding="async">
             <h4>Distribution</h4>
             <p>50% Liquidity Pool<br>30% Community Rewards<br>15% Development<br>5% Charity Wallet</p>
           </div>
@@ -619,22 +649,22 @@
       <h3 style="text-align:center; font-size:3rem; color:var(--neon-pink);">🏛️ THE FOUR PILLARS OF THE CALIVERSE</h3>
       <div class="pillars-grid">
         <article class="pillar-card reveal">
-           <img src="paw-icon-neon-yellow.png" alt="Yellow Paw">
+          <img src="paw-icon-neon-yellow.png" alt="Yellow Paw" loading="lazy" decoding="async">
           <h4>COMMUNITY FIRST</h4>
           <p>CaliCoin is built by the pack, for the pack. Governance, rewards, and vibes all flow from our holders.</p>
         </article>
         <article class="pillar-card reveal" data-delay="0.2">
-             <img src="paw-icon-neon-green.png" alt="Green Paw">
+          <img src="paw-icon-neon-green.png" alt="Green Paw" loading="lazy" decoding="async">
           <h4>GAMEFI INTEGRATION</h4>
           <p>Play, earn, and ride. Upcoming mini-games, staking rewards, and NFT utilities make $CALI more than a holder flex.</p>
         </article>
         <article class="pillar-card reveal" data-delay="0.4">
-            <img src="paw-icon-neon-pink.png" alt="Pink Paw">
+          <img src="paw-icon-neon-pink.png" alt="Pink Paw" loading="lazy" decoding="async">
           <h4>CHARITY &amp; IMPACT</h4>
           <p>5% of supply funds real-world animal shelters and rescue orgs. Memes with meaning. 🐾</p>
         </article>
         <article class="pillar-card reveal" data-delay="0.6">
-            <img src="banana-single-icon.png" alt="Banana">
+          <img src="banana-single-icon.png" alt="Banana" loading="lazy" decoding="async">
           <h4>MEME CULTURE</h4>
           <p>We don't take ourselves seriously, but we take our community seriously. Cali is a vibe, not a VC pitch.</p>
         </article>
@@ -650,10 +680,10 @@
           <p>🏆 Stake $CALI for passive rewards<br>🎲 Play mini-games (Cali Kart Racing, Banana Dash, etc.)<br>🎁 Earn NFT loot boxes<br>🔥 Compete in community tournaments with real $CALI prizes</p>
           <p>Our GameFi partners are building integrations that turn your $CALI into in-game power-ups, skins, and flex.</p>
           <p>Why hold when you can PLAY?</p>
-          <a class="cta-secondary" href="#community">JOIN THE GAME WAITLIST(LINKS COMING SOON)</a>
+          <a class="cta-secondary" href="#community">JOIN THE GAME WAITLIST (LINKS COMING SOON)</a>
         </div>
         <div class="hero__visual reveal" data-delay="0.2">
-           <img src="cali-sombrero-wink.png" alt="Cali Sombrero Wink">
+          <img src="cali-sombrero-wink.png" alt="Cali wearing a sombrero, winking" loading="lazy" decoding="async">
         </div>
       </div>
     </section>
@@ -667,7 +697,7 @@
         <p>🏥 Animal shelters and rescue organizations<br>🐕 Pet adoption programs<br>🦴 Veterinary care for strays and abandoned animals</p>
         <p>Every quarter, the community votes on which organizations receive support. We believe in giving back to the real good boys and girls out there.</p>
         <p>Because even meme coins can have a heart. ❤️</p>
-        <a class="cta-secondary" href="#">SEE OUR CHARITY PARTNERS(LINKS COMING SOON)</a>
+        <a class="cta-secondary" href="#">SEE OUR CHARITY PARTNERS (LINKS COMING SOON)</a>
       </div>
     </section>
 
@@ -679,8 +709,8 @@
         ✨ 10,000 unique Cali-themed NFTs<br>🎨 Hand-drawn rarity traits (sombreros, mini-bikes, banana accessories)<br>🎟️ Utility perks: Early access to games, staking boosts, IRL merch<br>🏆 VIP holder rewards and airdrops
         <br><br>Mint opens Q3 2025. Holders get whitelist priority.
       </p>
-      <a class="cta-secondary" href="#">GET ON THE WHITELIST(LINKS COMING SOON)</a>
-      <div class="nft-grid" style="margin-top:2rem;">
+      <a class="cta-secondary" href="#">GET ON THE WHITELIST (LINKS COMING SOON)</a>
+      <div class="nft-grid">
         <article class="nft-card reveal">
           <div class="nft-image">NFT #001</div>
           <span class="rarity">RARE</span>
@@ -702,7 +732,7 @@
     <section id="roadmap" class="section roadmap-section">
       <h3 style="text-align:center; font-size:3.2rem; color:var(--neon-green);">🛣️ THE ROAD AHEAD</h3>
       <div class="roadmap-visual">
-            <img src="roadmap-winding-road.png" alt="Road Map">
+        <img src="roadmap-winding-road.png" alt="Roadmap winding path" loading="lazy" decoding="async">
         <div class="milestone reveal" style="top:8%; left:12%;">
           <h4>Q4 2025</h4>
           <p>Token Launch<br>Liquidity Lock<br>Community Building<br>Meme Warfare Initiated</p>
@@ -725,21 +755,22 @@
     <section id="community" class="section community-section">
       <div class="community-grid">
         <div class="community-visual reveal">
-         <img src="cali-minibike.png" alt="Cali Minibike" style="margin:0 auto; border-style:solid; border-width:4px; border-color:rgba(0,0,0,0.4);"></div>
+          <img src="cali-minibike.png" alt="Cali on minibike" loading="lazy" decoding="async" style="margin:0 auto; border-style:solid; border-width:4px; border-color:rgba(0,0,0,0.4);">
         </div>
         <div class="community-text reveal" data-delay="0.2">
           <h3>🚀 READY TO JOIN THE PACK?</h3>
           <p>The kennel is open. The bike is revving. The bananas are ripe.</p>
           <p>Don't get left behind while Cali rides to the moon.</p>
           <div class="cta-buttons">
-            <button>BUY $CALI NOW(OPENING SOON)</button>
-            <a href="https://t.me/+FSlpLE1AWBZlMjgx" target="_blank"><button>JOIN TELEGRAM</button>
-              <a/>
+            <button>BUY $CALI NOW (OPENING SOON)</button>
+            <a href="https://t.me/+FSlpLE1AWBZlMjgx" target="_blank" rel="noopener">
+              <button>JOIN TELEGRAM</button>
+            </a>
           </div>
           <div class="social-row">
             <a href="https://x.com/CaliRidesCrypto?t=47oGyIxD5sFDiv5B6JAdHg&s=03">Twitter / X</a>
             <a href="https://t.me/+FSlpLE1AWBZlMjgx">Telegram</a>
-            <span>TikTok: @CaliRidesCrypto</span>      
+            <span>TikTok: @CaliRidesCrypto</span>
           </div>
         </div>
       </div>
@@ -765,7 +796,7 @@
     <div class="footer-social">
       <a href="https://x.com/CaliRidesCrypto?t=47oGyIxD5sFDiv5B6JAdHg&s=03">Twitter / X</a>
       <a href="https://t.me/+FSlpLE1AWBZlMjgx">Telegram</a>
-      <span>TikTok: @CaliRidesCrypto</span>   
+      <span>TikTok: @CaliRidesCrypto</span>
     </div>
     <p style="color:rgba(255,255,255,0.6);">© 2025 CaliCoin. Built by degens, for degens. All rights reserved. 🐾</p>
   </footer>
